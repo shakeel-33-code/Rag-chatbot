@@ -1,0 +1,24 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# ChromaDB data
+backend/chroma_db/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+backend/test.pdf
+backend/test_real.pdf
+test.pdf
+test_real.pdf
