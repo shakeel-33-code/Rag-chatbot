@@ -168,18 +168,83 @@
 
         .modal {
             background-color: var(--surface-color-1);
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
+            width: 96vw;
+            height: 92vh;
+            max-width: none;
+            max-height: none;
             border: 1px solid var(--surface-color-2);
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .modal h2 {
             margin-top: 0;
             font-size: 1.25rem;
             margin-bottom: 1rem;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 300px minmax(0, 1fr);
+            gap: 1rem;
+            min-height: 0;
+            flex: 1;
+        }
+
+        .settings-column,
+        .observability-column {
+            min-height: 0;
+        }
+
+        .settings-column {
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+
+        .observability-column {
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--surface-color-2);
+            padding-left: 1rem;
+        }
+
+        .observability-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .observability-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .observability-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .observability-frame-wrap {
+            flex: 1;
+            min-height: 0;
+            background-color: #0b0d12;
+            border: 1px solid var(--surface-color-2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .observability-frame {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background-color: #0b0d12;
         }
 
         .modal textarea {
@@ -239,6 +304,7 @@
             display: flex;
             justify-content: flex-end;
             gap: 0.75rem;
+            margin-top: 1rem;
         }
         
         .btn-outline {
@@ -249,6 +315,34 @@
         
         .btn-outline:hover {
             background-color: var(--surface-color-2);
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .modal {
+                width: 96vw;
+                height: 94vh;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+            }
+
+            .observability-column {
+                border-left: none;
+                border-top: 1px solid var(--surface-color-2);
+                padding-left: 0;
+                padding-top: 1rem;
+            }
+
+            .observability-frame-wrap {
+                min-height: 60vh;
+            }
         }
         
     </style>
@@ -285,30 +379,52 @@
         <div class="modal">
             <h2>Settings</h2>
 
-            <div class="setting-row">
-                <label class="setting-label">System Prompt</label>
-                <textarea id="prompt-textarea"></textarea>
-            </div>
+            <div class="settings-grid">
+                <div class="settings-column">
+                    <div class="setting-row">
+                        <label class="setting-label">System Prompt</label>
+                        <textarea id="prompt-textarea"></textarea>
+                    </div>
 
-            <div class="setting-row">
-                <label class="setting-label">
-                    Temperature
-                    <span id="temp-display">0.20</span>
-                </label>
-                <input type="range" id="temperature-input" min="0" max="2" step="0.05" value="0.2">
-            </div>
+                    <div class="setting-row">
+                        <label class="setting-label">
+                            Temperature
+                            <span id="temp-display">0.20</span>
+                        </label>
+                        <input type="range" id="temperature-input" min="0" max="2" step="0.05" value="0.2">
+                    </div>
 
-            <div class="setting-row">
-                <label class="setting-label">Max New Tokens</label>
-                <input type="number" id="max-tokens-input" min="64" max="2048" step="64" value="512">
-            </div>
+                    <div class="setting-row">
+                        <label class="setting-label">Max New Tokens</label>
+                        <input type="number" id="max-tokens-input" min="64" max="2048" step="64" value="512">
+                    </div>
 
-            <div class="setting-row">
-                <label class="setting-label">
-                    Top K Chunks
-                    <small style="color:#718096;font-size:0.75rem">context chunks retrieved</small>
-                </label>
-                <input type="number" id="top-k-input" min="1" max="10" step="1" value="3">
+                    <div class="setting-row">
+                        <label class="setting-label">
+                            Top K Chunks
+                            <small style="color:#718096;font-size:0.75rem">context chunks retrieved</small>
+                        </label>
+                        <input type="number" id="top-k-input" min="1" max="10" step="1" value="3">
+                    </div>
+                </div>
+
+                <div class="observability-column">
+                    <div class="observability-header">
+                        <h3>View Traces And Observability</h3>
+                        <div class="observability-actions">
+                            <button class="btn btn-outline btn-small" id="traces-refresh" type="button">Refresh</button>
+                            <a class="btn btn-small" id="traces-open" href="http://127.0.0.1:6006/projects/" target="_blank" rel="noopener">Open</a>
+                        </div>
+                    </div>
+                    <div class="observability-frame-wrap">
+                        <iframe
+                            class="observability-frame"
+                            id="phoenix-frame"
+                            title="Phoenix traces and observability"
+                            src="http://127.0.0.1:6006/projects/"
+                        ></iframe>
+                    </div>
+                </div>
             </div>
 
             <div class="modal-actions">
@@ -337,6 +453,8 @@
         const settingsCancel = document.getElementById('settings-cancel');
         const settingsSave = document.getElementById('settings-save');
         const promptTextarea = document.getElementById('prompt-textarea');
+        const phoenixFrame = document.getElementById('phoenix-frame');
+        const tracesRefresh = document.getElementById('traces-refresh');
 
         // Helper: Append message to chat
         function appendMessage(role, content) {
@@ -465,6 +583,7 @@
             } catch (e) {
                 console.error("Could not fetch settings", e);
             }
+            phoenixFrame.src = 'http://127.0.0.1:6006/projects/';
             settingsOverlay.style.display = 'flex';
         });
 
@@ -491,6 +610,10 @@
                 settingsSave.disabled = false;
                 settingsOverlay.style.display = 'none';
             }
+        });
+
+        tracesRefresh.addEventListener('click', () => {
+            phoenixFrame.src = 'http://127.0.0.1:6006/projects/';
         });
     </script>
 </body>

@@ -12,6 +12,7 @@ venv/
 
 # ChromaDB data
 backend/chroma_db/
+backend/chroma_db_recovered/
 
 # OS
 .DS_Store
