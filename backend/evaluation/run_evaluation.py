@@ -1,7 +1,11 @@
 import argparse
 import os
 
-from evaluation.eval_config import DEFAULT_GOLDEN_DATASET_PATH, DEFAULT_REPORT_JSON_PATH
+from evaluation.eval_config import (
+    DEFAULT_GOLDEN_DATASET_PATH,
+    DEFAULT_REPORT_JSON_PATH,
+    DEFAULT_REPORT_YAML_PATH,
+)
 from evaluation.golden_dataset_generator import generate_golden_dataset
 from evaluation.metrics import run_evaluation
 from observability import setup_observability
@@ -14,6 +18,7 @@ def main() -> None:
     parser.add_argument("--golden-dataset", default=DEFAULT_GOLDEN_DATASET_PATH)
     parser.add_argument("--output", default=DEFAULT_REPORT_JSON_PATH)
     parser.add_argument("--markdown-output")
+    parser.add_argument("--yaml-output", default=DEFAULT_REPORT_YAML_PATH)
     parser.add_argument("--top-k", type=int)
     parser.add_argument("--generate", action="store_true")
     parser.add_argument("--pdf")
@@ -42,6 +47,7 @@ def main() -> None:
         config=config,
         output_json_path=args.output,
         output_markdown_path=markdown_output,
+        output_yaml_path=args.yaml_output,
     )
     print(report.to_dict()["summary"])
 

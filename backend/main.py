@@ -22,6 +22,7 @@ from evaluation.eval_config import (
     DEFAULT_GOLDEN_DATASET_PATH,
     DEFAULT_REPORT_JSON_PATH,
     DEFAULT_REPORT_MD_PATH,
+    DEFAULT_REPORT_YAML_PATH,
 )
 from evaluation.golden_dataset_generator import generate_golden_dataset
 from evaluation.metrics import run_evaluation
@@ -59,6 +60,7 @@ class EvaluationRunRequest(BaseModel):
     golden_dataset_path: str = DEFAULT_GOLDEN_DATASET_PATH
     output_path: str = DEFAULT_REPORT_JSON_PATH
     markdown_output_path: str = DEFAULT_REPORT_MD_PATH
+    yaml_output_path: str = DEFAULT_REPORT_YAML_PATH
     top_k: int | None = None
 
 @app.post("/upload")
@@ -190,6 +192,7 @@ def run_evaluation_endpoint(request: EvaluationRunRequest = EvaluationRunRequest
             config=config_overrides,
             output_json_path=request.output_path,
             output_markdown_path=request.markdown_output_path,
+            output_yaml_path=request.yaml_output_path,
         )
         return report.to_dict()
     except FileNotFoundError as e:

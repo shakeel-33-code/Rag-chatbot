@@ -6,6 +6,7 @@ BASE_DIR = os.path.dirname(__file__)
 DEFAULT_GOLDEN_DATASET_PATH = os.path.join(BASE_DIR, "golden_dataset.json")
 DEFAULT_REPORT_JSON_PATH = os.path.join(BASE_DIR, "report.json")
 DEFAULT_REPORT_MD_PATH = os.path.join(BASE_DIR, "report.md")
+DEFAULT_REPORT_YAML_PATH = os.path.join(BASE_DIR, "report_card.yaml")
 
 EVAL_THRESHOLDS = {
     "context_precision": 0.85,

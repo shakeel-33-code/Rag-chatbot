@@ -21,3 +21,4 @@ datasets
 langchain
 langchain-openai
 langchain-community
+PyYAML

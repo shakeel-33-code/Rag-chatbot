@@ -7,6 +7,17 @@ from typing import Any
 from evaluation.eval_config import EVAL_THRESHOLDS, LOWER_IS_BETTER
 
 
+REPORT_CARD_METRICS = {
+    "Context precision": "context_precision",
+    "Context recall": "context_recall",
+    "Answer relevance": "answer_relevancy",
+    "Faithfulness": "faithfulness",
+    "Groundedness": "groundedness_score",
+    "Retrieval score": "retrieval_f1",
+    "Hallucination rate": "hallucination_rate",
+}
+
+
 def build_report(
     aggregate_scores: dict[str, float | None],
     per_question_scores: list[dict[str, Any]],
@@ -40,6 +51,78 @@ def save_report(report: dict[str, Any], json_path: str, markdown_path: str | Non
     if markdown_path:
         with open(markdown_path, "w", encoding="utf-8") as file:
             file.write(render_markdown_report(report))
+
+
+def save_yaml_report_card(report: dict[str, Any], yaml_path: str) -> None:
+    try:
+        import yaml
+    except ImportError as exc:
+        raise RuntimeError("PyYAML is required to write YAML evaluation report cards.") from exc
+
+    report_card = build_yaml_report_card(report)
+    os.makedirs(os.path.dirname(yaml_path), exist_ok=True)
+    with open(yaml_path, "w", encoding="utf-8") as file:
+        yaml.safe_dump(report_card, file, sort_keys=False, allow_unicode=True)
+
+
+def build_yaml_report_card(report: dict[str, Any]) -> dict[str, Any]:
+    report = _clean_report_value(report)
+    aggregate_scores = report.get("aggregate_scores", {})
+    thresholds = report.get("thresholds", {})
+    summary = report.get("summary", {})
+
+    return {
+        "report_card": {
+            "summary": {
+                "timestamp": summary.get("timestamp"),
+                "total_questions": summary.get("total_questions"),
+                "pass": summary.get("pass"),
+                "overall_rag_score": summary.get("overall_rag_score"),
+            },
+            "metrics": {
+                label: {
+                    "score": aggregate_scores.get(metric_key),
+                    "threshold": thresholds.get(metric_key),
+                    "status": _metric_status(
+                        metric_key,
+                        aggregate_scores.get(metric_key),
+                        thresholds.get(metric_key),
+                    ),
+                }
+                for label, metric_key in REPORT_CARD_METRICS.items()
+            },
+            "failed_questions": report.get("failed_questions", []),
+        },
+        "per_question_results": [
+            _build_question_report_card(row, thresholds)
+            for row in report.get("per_question_scores", [])
+        ],
+    }
+
+
+def _build_question_report_card(row: dict[str, Any], thresholds: dict[str, float]) -> dict[str, Any]:
+    return {
+        "id": row.get("id"),
+        "question": row.get("question"),
+        "generated_answer": row.get("answer"),
+        "reference_answer": row.get("ground_truth"),
+        "retrieved_contexts": row.get("contexts", []),
+        "expected_contexts": row.get("expected_contexts", []),
+        "metrics": {
+            label: {
+                "score": row.get(metric_key),
+                "threshold": thresholds.get(metric_key),
+                "status": _metric_status(metric_key, row.get(metric_key), thresholds.get(metric_key)),
+            }
+            for label, metric_key in REPORT_CARD_METRICS.items()
+        },
+        "diagnostics": {
+            "retrieval_latency_ms": row.get("retrieval_latency_ms"),
+            "generation_latency_ms": row.get("generation_latency_ms"),
+            "chunk_count_used": row.get("chunk_count_used"),
+            "token_usage": row.get("token_usage"),
+        },
+    }
 
 
 def load_latest_report(json_path: str) -> dict[str, Any]:

@@ -1,0 +1,1010 @@
+{
+  "summary": {
+    "overall_rag_score": 0.7388,
+    "pass": false,
+    "timestamp": "2026-06-12T03:08:46.817133+00:00",
+    "total_questions": 18
+  },
+  "aggregate_scores": {
+    "context_precision": 0.8333,
+    "context_recall": 0.8333,
+    "context_relevancy": 0.8889,
+    "context_entity_recall": 0.7071,
+    "faithfulness": 0.5692,
+    "answer_relevancy": 0.8751,
+    "answer_correctness": 0.4862,
+    "answer_similarity": 0.3457,
+    "hallucination_rate": 0.4308,
+    "groundedness_score": 0.5692,
+    "retrieval_f1": 0.8333,
+    "overall_rag_score": 0.7388
+  },
+  "per_question_scores": [
+    {
+      "id": "q_001",
+      "question": "What is the process of chunking in the context of RAG systems?",
+      "answer": "Chunking in the context of RAG (Retrieval-Augmented Generation) systems is the process of dividing source documents into smaller units before embedding and indexing them. This division helps in managing the documents more efficiently and can impact various aspects such as retrieval precision, recall, context preservation, storage cost, latency, and answer quality.",
+      "contexts": [
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage",
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage",
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage"
+      ],
+      "ground_truth": "Chunking is the process of dividing source documents into smaller units before embedding and indexing them.",
+      "reference": "Chunking is the process of dividing source documents into smaller units before embedding and indexing them.",
+      "expected_contexts": [
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 0,
+        "source_page": [],
+        "topic": "RAG Chunking Strategies",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 460.97,
+      "generation_latency_ms": 2194.3,
+      "token_usage": {
+        "input_tokens_estimate": 319,
+        "output_tokens_estimate": 91
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.6486,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.4898,
+      "answer_similarity": 0.3243,
+      "hallucination_rate": 0.3514,
+      "groundedness_score": 0.6486,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.8611
+    },
+    {
+      "id": "q_002",
+      "question": "What is the main disadvantage of fixed-size chunking in document processing?",
+      "answer": "The main disadvantage of fixed-size chunking is that it does not consider semantic boundaries, which can lead to chunks that are not meaningful or coherent. For example, a chunk might cut through the middle of a sentence or a paragraph, making it less useful for tasks that require understanding the context or meaning of the text.",
+      "contexts": [
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh",
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh",
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh"
+      ],
+      "ground_truth": "Fixed-size chunking does not consider semantic boundaries, which can lead to chunks that are not meaningful or coherent.",
+      "reference": "Fixed-size chunking does not consider semantic boundaries, which can lead to chunks that are not meaningful or coherent.",
+      "expected_contexts": [
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 1,
+        "source_page": [],
+        "topic": "Fixed-Size Chunking",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 439.36,
+      "generation_latency_ms": 881.52,
+      "token_usage": {
+        "input_tokens_estimate": 322,
+        "output_tokens_estimate": 82
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 0.4286,
+      "faithfulness": 0.2424,
+      "answer_relevancy": 0.7143,
+      "answer_correctness": 0.5957,
+      "answer_similarity": 0.4242,
+      "hallucination_rate": 0.7576,
+      "groundedness_score": 0.2424,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.7273
+    },
+    {
+      "id": "q_003",
+      "question": "What are the pros and cons of using simple chunking in RAG systems?",
+      "answer": "Simple chunking in RAG systems involves dividing the text into fixed-size chunks, such as sentences or paragraphs. Here are the pros and cons of this approach:\n\n**Pros:**\n1. **Simplicity:** It is straightforward to implement and understand.\n2. **Consistency:** Fixed-size chunks ensure uniformity in processing, which can be beneficial for certain types of analysis.\n3. **Efficiency:** It can be faster to process because the size of each chunk is predetermined.\n\n**Cons:**\n1. **Loss of Context:** Fixed-size chunks might not capture the full context of a topic, especially if the information is spread across multiple chunks.\n2. **Inconsistent Retrieval:** This method may not always align well with the logical structure of the document, leading to suboptimal retrieval results.\n3. **Storage and Latency:** Depending on the size of the chunks, it might increase storage costs and latency, especially if the chunks are too small.\n\nThese points highlight the trade-offs between simplicity and effectiveness in using simple chunking strategies in RAG systems.",
+      "contexts": [
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage",
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage",
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage"
+      ],
+      "ground_truth": "Pros: Extremely simple, Fast indexing, Predictable chunk sizes. Cons: Sentences may be cut in half, Topics can be split across chunks, Retrieval quality may suffer.",
+      "reference": "Pros: Extremely simple, Fast indexing, Predictable chunk sizes. Cons: Sentences may be cut in half, Topics can be split across chunks, Retrieval quality may suffer.",
+      "expected_contexts": [
+        "ount words/tokens. 3. Create\nchunk whenever threshold is reached. Pros: (cid:127) Extremely simple. (cid:127) Fast indexing. (cid:127) Predictable\nchunk sizes. Cons: (cid:127) Sentences may be cut in half. (cid:127) Topics can be split across chunks. (cid:127) Retrieval\nquality may suffer. Best for: Large generic text corpora, prototypes, and baseline RAG systems.\n2. Fixed-Size Chunking with Overl"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 2,
+        "source_page": [],
+        "topic": "Chunking Methods in RAG Systems",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 504.86,
+      "generation_latency_ms": 2223.7,
+      "token_usage": {
+        "input_tokens_estimate": 320,
+        "output_tokens_estimate": 264
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 0.0,
+      "context_recall": 0.0,
+      "context_entity_recall": 0.1429,
+      "faithfulness": 0.1625,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.198,
+      "answer_similarity": 0.1099,
+      "hallucination_rate": 0.8375,
+      "groundedness_score": 0.1625,
+      "retrieval_f1": null,
+      "overall_rag_score": 0.2104
+    },
+    {
+      "id": "q_004",
+      "question": "What is the purpose of using overlap in fixed-size chunking for RAG systems?",
+      "answer": "Overlap in fixed-size chunking for RAG systems helps ensure that important context is not lost at chunk boundaries. By having overlapping tokens between chunks, the system can better capture and use relevant information that might be split across different chunks.",
+      "contexts": [
+        "ine RAG systems.\n2. Fixed-Size Chunking with Overlap\nHow it works: Adjacent chunks share a percentage of content. A chunk of 500 tokens with\n100-token overlap means the next chunk starts 100 tokens before the previous one ends.\nImplementation: Chunk 1: tokens 1–500 Chunk 2: tokens 401–900 Chunk 3: tokens 801–1300 Why\noverlap helps: Important context often sits near chunk boundaries. Overlap preven",
+        "ine RAG systems.\n2. Fixed-Size Chunking with Overlap\nHow it works: Adjacent chunks share a percentage of content. A chunk of 500 tokens with\n100-token overlap means the next chunk starts 100 tokens before the previous one ends.\nImplementation: Chunk 1: tokens 1–500 Chunk 2: tokens 401–900 Chunk 3: tokens 801–1300 Why\noverlap helps: Important context often sits near chunk boundaries. Overlap preven",
+        "ine RAG systems.\n2. Fixed-Size Chunking with Overlap\nHow it works: Adjacent chunks share a percentage of content. A chunk of 500 tokens with\n100-token overlap means the next chunk starts 100 tokens before the previous one ends.\nImplementation: Chunk 1: tokens 1–500 Chunk 2: tokens 401–900 Chunk 3: tokens 801–1300 Why\noverlap helps: Important context often sits near chunk boundaries. Overlap preven"
+      ],
+      "ground_truth": "Overlap helps to ensure important context is not lost near chunk boundaries.",
+      "reference": "Overlap helps to ensure important context is not lost near chunk boundaries.",
+      "expected_contexts": [
+        "ine RAG systems.\n2. Fixed-Size Chunking with Overlap\nHow it works: Adjacent chunks share a percentage of content. A chunk of 500 tokens with\n100-token overlap means the next chunk starts 100 tokens before the previous one ends.\nImplementation: Chunk 1: tokens 1–500 Chunk 2: tokens 401–900 Chunk 3: tokens 801–1300 Why\noverlap helps: Important context often sits near chunk boundaries. Overlap preven"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 3,
+        "source_page": [],
+        "topic": "Fixed-Size Chunking with Overlap in RAG Systems",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 508.16,
+      "generation_latency_ms": 2457.98,
+      "token_usage": {
+        "input_tokens_estimate": 322,
+        "output_tokens_estimate": 66
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 0.7,
+      "faithfulness": 0.4194,
+      "answer_relevancy": 0.75,
+      "answer_correctness": 0.439,
+      "answer_similarity": 0.2812,
+      "hallucination_rate": 0.5806,
+      "groundedness_score": 0.4194,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.7612
+    },
+    {
+      "id": "q_005",
+      "question": "What are the pros and cons of using overlap in a RAG chatbot system?",
+      "answer": "Pros:\n- Better context continuity\n- Improved retrieval accuracy\n- Widely used in production\n\nCons:\n- Higher storage cost\n- Duplicate embeddings\n- Larger indexing time",
+      "contexts": [
+        "t often sits near chunk boundaries. Overlap prevents information\nloss. Pros: (cid:127) Better context continuity. (cid:127) Improved retrieval accuracy. (cid:127) Widely used in production.\nCons: (cid:127) Higher storage cost. (cid:127) Duplicate embeddings. (cid:127) Larger indexing time. Best for:\nDocumentation, knowledge bases, customer-support RAG.\n3. Sentence-Based Chunking\nHow it works: The",
+        "t often sits near chunk boundaries. Overlap prevents information\nloss. Pros: (cid:127) Better context continuity. (cid:127) Improved retrieval accuracy. (cid:127) Widely used in production.\nCons: (cid:127) Higher storage cost. (cid:127) Duplicate embeddings. (cid:127) Larger indexing time. Best for:\nDocumentation, knowledge bases, customer-support RAG.\n3. Sentence-Based Chunking\nHow it works: The",
+        "t often sits near chunk boundaries. Overlap prevents information\nloss. Pros: (cid:127) Better context continuity. (cid:127) Improved retrieval accuracy. (cid:127) Widely used in production.\nCons: (cid:127) Higher storage cost. (cid:127) Duplicate embeddings. (cid:127) Larger indexing time. Best for:\nDocumentation, knowledge bases, customer-support RAG.\n3. Sentence-Based Chunking\nHow it works: The"
+      ],
+      "ground_truth": "Pros: Better context continuity, improved retrieval accuracy, widely used in production. Cons: Higher storage cost, duplicate embeddings, larger indexing time.",
+      "reference": "Pros: Better context continuity, improved retrieval accuracy, widely used in production. Cons: Higher storage cost, duplicate embeddings, larger indexing time.",
+      "expected_contexts": [
+        "t often sits near chunk boundaries. Overlap prevents information\nloss. Pros: (cid:127) Better context continuity. (cid:127) Improved retrieval accuracy. (cid:127) Widely used in production.\nCons: (cid:127) Higher storage cost. (cid:127) Duplicate embeddings. (cid:127) Larger indexing time. Best for:\nDocumentation, knowledge bases, customer-support RAG.\n3. Sentence-Based Chunking\nHow it works: The "
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 4,
+        "source_page": [],
+        "topic": "RAG chatbot overlap",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 471.49,
+      "generation_latency_ms": 765.66,
+      "token_usage": {
+        "input_tokens_estimate": 320,
+        "output_tokens_estimate": 41
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.2857,
+      "answer_correctness": 1.0,
+      "answer_similarity": 1.0,
+      "hallucination_rate": 0.0,
+      "groundedness_score": 1.0,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.8929
+    },
+    {
+      "id": "q_006",
+      "question": "What is the primary benefit of sentence-based chunking in RAG systems?",
+      "answer": "The primary benefit of sentence-based chunking in RAG systems is that it preserves semantic integrity because sentences remain intact.",
+      "contexts": [
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl",
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl",
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl"
+      ],
+      "ground_truth": "Semantic integrity is preserved because sentences remain intact.",
+      "reference": "Semantic integrity is preserved because sentences remain intact.",
+      "expected_contexts": [
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 5,
+        "source_page": [],
+        "topic": "RAG - Sentence-Based Chunking",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 431.73,
+      "generation_latency_ms": 645.98,
+      "token_usage": {
+        "input_tokens_estimate": 321,
+        "output_tokens_estimate": 33
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.6667,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.5454,
+      "answer_similarity": 0.375,
+      "hallucination_rate": 0.3333,
+      "groundedness_score": 0.6667,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.8712
+    },
+    {
+      "id": "q_007",
+      "question": "What are the pros and cons of using paragraph chunking for a RAG chatbot, and for which types of content is it best suited?",
+      "answer": "The context provided focuses on sentence-based chunking rather than paragraph chunking. However, I can still discuss the pros and cons of paragraph chunking and suggest suitable content types based on general knowledge.\n\nPros of using paragraph chunking for a RAG chatbot:\n1. **Context Preservation**: Paragraphs often contain more context, which can be crucial for understanding the full meaning of a query.\n2. **Efficiency**: Smaller chunks mean fewer tokens, which can be more efficient for processing and retrieval.\n3. **User Experience**: Longer paragraphs can provide more detailed information, which might be beneficial for complex queries.\n\nCons of using paragraph chunking for a RAG chatbot:\n1. **Semantic Integrity**: Breaking paragraphs into smaller chunks can sometimes disrupt the semantic flow, leading to less coherent responses.\n2. **Embeddings**: Larger chunks might result in less effective embeddings, as the model might not capture the nuances as well.\n3. **Complexity**: Managing larger chunks can be more complex in terms of indexing and retrieval.\n\nParagraph chunking is best suited for:\n- **Content with High Contextual Dependency**: Such as legal documents, medical reports, or technical manuals where understanding the full context is crucial.\n- **Detailed Information Queries**: When users need detailed information that spans multiple sentences or paragraphs.\n\nFor a more precise answer, we would need the specific context or document details.",
+      "contexts": [
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl",
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl",
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl"
+      ],
+      "ground_truth": "Pros: Better embeddings and cleaner retrieval results. Cons: Uneven chunk lengths, where some chunks may become too large or too small. Best for: Research papers, legal content, articles.",
+      "reference": "Pros: Better embeddings and cleaner retrieval results. Cons: Uneven chunk lengths, where some chunks may become too large or too small. Best for: Research papers, legal content, articles.",
+      "expected_contexts": [
+        "eserved. (cid:127) Better embeddings. (cid:127) Cleaner retrieval results. Cons: (cid:127) Uneven\nchunk lengths. (cid:127) Some chunks may become too large or too small. Best for: Research papers, legal\ncontent, articles.\n4. Paragraph Chunking\nHow it works: Paragraphs become chunk units. A paragraph is treated as a coherent topic block.\nImplementation: Split on paragraph separators and optionally "
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 6,
+        "source_page": [],
+        "topic": "RAG chatbot chunking methods",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 441.92,
+      "generation_latency_ms": 2544.38,
+      "token_usage": {
+        "input_tokens_estimate": 334,
+        "output_tokens_estimate": 367
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 0.0,
+      "context_recall": 0.0,
+      "context_entity_recall": 0.1304,
+      "faithfulness": 0.099,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.129,
+      "answer_similarity": 0.069,
+      "hallucination_rate": 0.901,
+      "groundedness_score": 0.099,
+      "retrieval_f1": null,
+      "overall_rag_score": 0.1876
+    },
+    {
+      "id": "q_008",
+      "question": "What are the pros of splitting text on paragraph separators and optionally merging small paragraphs?",
+      "answer": "The pros of splitting text on paragraph separators and optionally merging small paragraphs include:\n- Preserves author intent.\n- Strong topical coherence.\n- Easy implementation.",
+      "contexts": [
+        "ion: Split on paragraph separators and optionally merge small paragraphs. Pros: (cid:127)\nPreserves author intent. (cid:127) Strong topical coherence. (cid:127) Easy implementation. Cons: (cid:127) Paragraph size\nvaries greatly. (cid:127) Large paragraphs can exceed model limits. Best for: Blogs, policies, manuals,\nSOPs.\n5. Semantic Chunking\nHow it works: Instead of splitting by size, embeddings a",
+        "ion: Split on paragraph separators and optionally merge small paragraphs. Pros: (cid:127)\nPreserves author intent. (cid:127) Strong topical coherence. (cid:127) Easy implementation. Cons: (cid:127) Paragraph size\nvaries greatly. (cid:127) Large paragraphs can exceed model limits. Best for: Blogs, policies, manuals,\nSOPs.\n5. Semantic Chunking\nHow it works: Instead of splitting by size, embeddings a",
+        "ion: Split on paragraph separators and optionally merge small paragraphs. Pros: (cid:127)\nPreserves author intent. (cid:127) Strong topical coherence. (cid:127) Easy implementation. Cons: (cid:127) Paragraph size\nvaries greatly. (cid:127) Large paragraphs can exceed model limits. Best for: Blogs, policies, manuals,\nSOPs.\n5. Semantic Chunking\nHow it works: Instead of splitting by size, embeddings a"
+      ],
+      "ground_truth": "Preserves author intent. Strong topical coherence. Easy implementation.",
+      "reference": "Preserves author intent. Strong topical coherence. Easy implementation.",
+      "expected_contexts": [
+        "ion: Split on paragraph separators and optionally merge small paragraphs. Pros: (cid:127)\nPreserves author intent. (cid:127) Strong topical coherence. (cid:127) Easy implementation. Cons: (cid:127) Paragraph size\nvaries greatly. (cid:127) Large paragraphs can exceed model limits. Best for: Blogs, policies, manuals,\nSOPs.\n5. Semantic Chunking\nHow it works: Instead of splitting by size, embeddings a"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 7,
+        "source_page": [],
+        "topic": "Text Splitting and Chunking",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 434.82,
+      "generation_latency_ms": 653.73,
+      "token_usage": {
+        "input_tokens_estimate": 328,
+        "output_tokens_estimate": 44
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.8333,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.6153,
+      "answer_similarity": 0.4444,
+      "hallucination_rate": 0.1667,
+      "groundedness_score": 0.8333,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.9199
+    },
+    {
+      "id": "q_009",
+      "question": "What method is used to determine where to create new chunks in the document?",
+      "answer": "In fixed-size chunking, new chunks are created whenever a predefined threshold (such as a word count, token count, or character count) is reached. The method does not consider semantic boundaries or meaning, so it splits the document into equal parts based on the chosen metric.",
+      "contexts": [
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh",
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh",
+        "its implementation logic, advantages, disadvantages, and ideal\nuse cases.\n1. Fixed-Size Chunking\nHow it works: Documents are split purely by character count, token count, or word count. No\nconsideration is given to semantic boundaries. Example: A 10,000-word document may be divided\ninto twenty 500-word chunks. Implementation: 1. Read document. 2. Count words/tokens. 3. Create\nchunk whenever thresh"
+      ],
+      "ground_truth": "Embeddings are used to determine semantic similarity, and a new chunk is created when topic similarity drops below a threshold.",
+      "reference": "Embeddings are used to determine semantic similarity, and a new chunk is created when topic similarity drops below a threshold.",
+      "expected_contexts": [
+        " works: Instead of splitting by size, embeddings are used to determine semantic similarity.\nWhen topic similarity drops below a threshold, a new chunk is created. Implementation: 1. Split\ndocument into sentences. 2. Generate embeddings. 3. Measure similarity between adjacent\nsentences. 4. Create chunk boundaries where semantic drift occurs. Pros: (cid:127) Very high retrieval\nquality. (cid:127) Be"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 8,
+        "source_page": [],
+        "topic": "Chunking Methodology",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 406.04,
+      "generation_latency_ms": 1101.29,
+      "token_usage": {
+        "input_tokens_estimate": 322,
+        "output_tokens_estimate": 69
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 0.1667,
+      "faithfulness": 0.4333,
+      "answer_relevancy": 0.5714,
+      "answer_correctness": 0.1904,
+      "answer_similarity": 0.1053,
+      "hallucination_rate": 0.5667,
+      "groundedness_score": 0.4333,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.7131
+    },
+    {
+      "id": "q_010",
+      "question": "What are the advantages of the system described in the context?",
+      "answer": "The advantages of the system described in the context include:\n\n- Broad questions retrieve parent nodes.\n- Specific questions retrieve child nodes.",
+      "contexts": [
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand",
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand",
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand"
+      ],
+      "ground_truth": "Advantages include very high retrieval quality, better grounding, and topic-aware chunk creation.",
+      "reference": "Advantages include very high retrieval quality, better grounding, and topic-aware chunk creation.",
+      "expected_contexts": [
+        "cid:127) Very high retrieval\nquality. (cid:127) Better grounding. (cid:127) Topic-aware chunk creation. Cons: (cid:127) Computationally expensive. (cid:127)\nSlower indexing pipeline. Best for: Enterprise search, finance, healthcare, legal AI.\n6. Recursive Chunking\nHow it works: The system attempts to preserve structure. It first tries splitting by paragraphs. If a\nparagraph is too large, it splits"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 9,
+        "source_page": [],
+        "topic": "System Advantages",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 384.04,
+      "generation_latency_ms": 687.96,
+      "token_usage": {
+        "input_tokens_estimate": 319,
+        "output_tokens_estimate": 36
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 0.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 0.25,
+      "faithfulness": 0.5833,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.1667,
+      "answer_similarity": 0.0909,
+      "hallucination_rate": 0.4167,
+      "groundedness_score": 0.5833,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.8125
+    },
+    {
+      "id": "q_011",
+      "question": "What are the pros of the described paragraph splitting method?",
+      "answer": "The pros of the described paragraph splitting method are:\n- Excellent balance between simplicity and quality.\n- Maintains structure whenever possible.\n- Industry standard approach.",
+      "contexts": [
+        "paragraphs. If a\nparagraph is too large, it splits by sentences. If still too large, it splits by words. Hierarchy:\nParagraph -> Sentence -> Word Pros: (cid:127) Excellent balance between simplicity and quality. (cid:127)\nMaintains structure whenever possible. (cid:127) Industry standard approach. Cons: (cid:127) Still size-driven. (cid:127) Not\nfully semantic. Best for: Most production RAG system",
+        "paragraphs. If a\nparagraph is too large, it splits by sentences. If still too large, it splits by words. Hierarchy:\nParagraph -> Sentence -> Word Pros: (cid:127) Excellent balance between simplicity and quality. (cid:127)\nMaintains structure whenever possible. (cid:127) Industry standard approach. Cons: (cid:127) Still size-driven. (cid:127) Not\nfully semantic. Best for: Most production RAG system",
+        "paragraphs. If a\nparagraph is too large, it splits by sentences. If still too large, it splits by words. Hierarchy:\nParagraph -> Sentence -> Word Pros: (cid:127) Excellent balance between simplicity and quality. (cid:127)\nMaintains structure whenever possible. (cid:127) Industry standard approach. Cons: (cid:127) Still size-driven. (cid:127) Not\nfully semantic. Best for: Most production RAG system"
+      ],
+      "ground_truth": "Excellent balance between simplicity and quality. Maintains structure whenever possible. Industry standard approach.",
+      "reference": "Excellent balance between simplicity and quality. Maintains structure whenever possible. Industry standard approach.",
+      "expected_contexts": [
+        "paragraphs. If a\nparagraph is too large, it splits by sentences. If still too large, it splits by words. Hierarchy:\nParagraph -> Sentence -> Word Pros: (cid:127) Excellent balance between simplicity and quality. (cid:127)\nMaintains structure whenever possible. (cid:127) Industry standard approach. Cons: (cid:127) Still size-driven. (cid:127) Not\nfully semantic. Best for: Most production RAG system"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 10,
+        "source_page": [],
+        "topic": "Paragraph Splitting Method",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 411.81,
+      "generation_latency_ms": 683.48,
+      "token_usage": {
+        "input_tokens_estimate": 319,
+        "output_tokens_estimate": 45
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.8235,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.8276,
+      "answer_similarity": 0.7059,
+      "hallucination_rate": 0.1765,
+      "groundedness_score": 0.8235,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.9386
+    },
+    {
+      "id": "q_012",
+      "question": "What method does Structure-Aware Chunking use to determine chunk boundaries?",
+      "answer": "Structure-Aware Chunking determines chunk boundaries based on the document hierarchy. Each structural element like Chapter, Section, Subsection, and Heading becomes a chunk or parent node.",
+      "contexts": [
+        "lly semantic. Best for: Most production RAG systems.\n7. Structure-Aware Chunking\nHow it works: Document hierarchy determines chunk boundaries. Examples: Chapter Section\nSubsection Heading Each structural element becomes a chunk or parent node. Pros: (cid:127) Preserves\ndocument organization. (cid:127) Highly interpretable retrieval. (cid:127) Excellent for technical content. Cons: (cid:127)\nRequir",
+        "lly semantic. Best for: Most production RAG systems.\n7. Structure-Aware Chunking\nHow it works: Document hierarchy determines chunk boundaries. Examples: Chapter Section\nSubsection Heading Each structural element becomes a chunk or parent node. Pros: (cid:127) Preserves\ndocument organization. (cid:127) Highly interpretable retrieval. (cid:127) Excellent for technical content. Cons: (cid:127)\nRequir",
+        "lly semantic. Best for: Most production RAG systems.\n7. Structure-Aware Chunking\nHow it works: Document hierarchy determines chunk boundaries. Examples: Chapter Section\nSubsection Heading Each structural element becomes a chunk or parent node. Pros: (cid:127) Preserves\ndocument organization. (cid:127) Highly interpretable retrieval. (cid:127) Excellent for technical content. Cons: (cid:127)\nRequir"
+      ],
+      "ground_truth": "Document hierarchy",
+      "reference": "Document hierarchy",
+      "expected_contexts": [
+        "lly semantic. Best for: Most production RAG systems.\n7. Structure-Aware Chunking\nHow it works: Document hierarchy determines chunk boundaries. Examples: Chapter Section\nSubsection Heading Each structural element becomes a chunk or parent node. Pros: (cid:127) Preserves\ndocument organization. (cid:127) Highly interpretable retrieval. (cid:127) Excellent for technical content. Cons: (cid:127)\nRequir"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 11,
+        "source_page": [],
+        "topic": "Structure-Aware Chunking",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 405.64,
+      "generation_latency_ms": 737.78,
+      "token_usage": {
+        "input_tokens_estimate": 322,
+        "output_tokens_estimate": 47
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.9,
+      "answer_relevancy": 0.5556,
+      "answer_correctness": 0.1818,
+      "answer_similarity": 0.1,
+      "hallucination_rate": 0.1,
+      "groundedness_score": 0.9,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.8265
+    },
+    {
+      "id": "q_013",
+      "question": "What are the limitations of using technical content with a RAG chatbot according to the context?",
+      "answer": "The context provided does not mention any limitations specifically related to using technical content with a RAG chatbot. It only describes how Sentence-Based Chunking works and its benefits. To answer questions about limitations, we would need additional information or context.",
+      "contexts": [
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl",
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl",
+        "RAG.\n3. Sentence-Based Chunking\nHow it works: The system first identifies sentence boundaries and then groups complete sentences\nuntil a target size is reached. Implementation: Uses NLP sentence tokenizers such as spaCy or\nNLTK. Benefits: Semantic integrity is preserved because sentences remain intact. Pros: (cid:127) Natural\nlanguage boundaries preserved. (cid:127) Better embeddings. (cid:127) Cl"
+      ],
+      "ground_truth": "Requires structured documents. (cid:127) Difficult with poorly formatted PDFs.",
+      "reference": "Requires structured documents. (cid:127) Difficult with poorly formatted PDFs.",
+      "expected_contexts": [
+        "lent for technical content. Cons: (cid:127)\nRequires structured documents. (cid:127) Difficult with poorly formatted PDFs. Best for: Documentation,\nbooks, manuals, regulations.\n8. Markdown Chunking\nHow it works: Markdown headers define chunk boundaries. # Authentication ## Login ## Logout\nEach section becomes a retrieval unit. Pros: (cid:127) Natural fit for developer docs. (cid:127) Preserves hie"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 12,
+        "source_page": [],
+        "topic": "RAG chatbot limitations for technical content",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 436.25,
+      "generation_latency_ms": 923.35,
+      "token_usage": {
+        "input_tokens_estimate": 327,
+        "output_tokens_estimate": 69
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 0.0,
+      "context_precision": 0.0,
+      "context_recall": 0.0,
+      "context_entity_recall": 0.2222,
+      "faithfulness": 0.2069,
+      "answer_relevancy": 0.875,
+      "answer_correctness": null,
+      "answer_similarity": 0.0,
+      "hallucination_rate": 0.7931,
+      "groundedness_score": 0.2069,
+      "retrieval_f1": null,
+      "overall_rag_score": 0.2033
+    },
+    {
+      "id": "q_014",
+      "question": "What is the primary benefit of code chunking in developer documentation?",
+      "answer": "The primary benefit of code chunking in developer documentation is that it preserves the hierarchy and structure of the source code. This makes the documentation more intuitive and easier to follow for developers, as it reflects the actual organization of the code.",
+      "contexts": [
+        "al fit for developer docs. (cid:127) Preserves hierarchy.\n(cid:127) Easy implementation. Cons: (cid:127) Depends on markdown quality. Best for: GitHub repositories,\nengineering documentation.\n9. Code Chunking\nHow it works: Source code is chunked according to programming structure rather than token count.\nPossible chunk units: (cid:127) Class (cid:127) Function (cid:127) Method (cid:127) Module Imp",
+        "al fit for developer docs. (cid:127) Preserves hierarchy.\n(cid:127) Easy implementation. Cons: (cid:127) Depends on markdown quality. Best for: GitHub repositories,\nengineering documentation.\n9. Code Chunking\nHow it works: Source code is chunked according to programming structure rather than token count.\nPossible chunk units: (cid:127) Class (cid:127) Function (cid:127) Method (cid:127) Module Imp",
+        "al fit for developer docs. (cid:127) Preserves hierarchy.\n(cid:127) Easy implementation. Cons: (cid:127) Depends on markdown quality. Best for: GitHub repositories,\nengineering documentation.\n9. Code Chunking\nHow it works: Source code is chunked according to programming structure rather than token count.\nPossible chunk units: (cid:127) Class (cid:127) Function (cid:127) Method (cid:127) Module Imp"
+      ],
+      "ground_truth": "Source code is chunked according to programming structure rather than token count.",
+      "reference": "Source code is chunked according to programming structure rather than token count.",
+      "expected_contexts": [
+        "al fit for developer docs. (cid:127) Preserves hierarchy.\n(cid:127) Easy implementation. Cons: (cid:127) Depends on markdown quality. Best for: GitHub repositories,\nengineering documentation.\n9. Code Chunking\nHow it works: Source code is chunked according to programming structure rather than token count.\nPossible chunk units: (cid:127) Class (cid:127) Function (cid:127) Method (cid:127) Module Imp"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 13,
+        "source_page": [],
+        "topic": "Code Chunking",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 367.26,
+      "generation_latency_ms": 972.94,
+      "token_usage": {
+        "input_tokens_estimate": 321,
+        "output_tokens_estimate": 66
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.381,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.1936,
+      "answer_similarity": 0.1071,
+      "hallucination_rate": 0.619,
+      "groundedness_score": 0.381,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.7646
+    },
+    {
+      "id": "q_015",
+      "question": "What are the pros of using AST parsers or Tree-sitter for code analysis?",
+      "answer": "The pros of using AST parsers or Tree-sitter for code analysis include:\n- Maintains code meaning\n- Better code retrieval\n- Superior for AI coding assistants",
+      "contexts": [
+        "27) Function (cid:127) Method (cid:127) Module Implementation: AST parsers or\nTree-sitter extract structural elements. Pros: (cid:127) Maintains code meaning. (cid:127) Better code retrieval. (cid:127)\nSuperior for AI coding assistants. Cons: (cid:127) Language-specific logic required. Best for: Repository\nchat, code search, coding copilots.\n10. Agentic Chunking\nHow it works: An LLM analyzes a doc",
+        "27) Function (cid:127) Method (cid:127) Module Implementation: AST parsers or\nTree-sitter extract structural elements. Pros: (cid:127) Maintains code meaning. (cid:127) Better code retrieval. (cid:127)\nSuperior for AI coding assistants. Cons: (cid:127) Language-specific logic required. Best for: Repository\nchat, code search, coding copilots.\n10. Agentic Chunking\nHow it works: An LLM analyzes a doc",
+        "27) Function (cid:127) Method (cid:127) Module Implementation: AST parsers or\nTree-sitter extract structural elements. Pros: (cid:127) Maintains code meaning. (cid:127) Better code retrieval. (cid:127)\nSuperior for AI coding assistants. Cons: (cid:127) Language-specific logic required. Best for: Repository\nchat, code search, coding copilots.\n10. Agentic Chunking\nHow it works: An LLM analyzes a doc"
+      ],
+      "ground_truth": "Pros: Maintains code meaning. Better code retrieval. Superior for AI coding assistants.",
+      "reference": "Pros: Maintains code meaning. Better code retrieval. Superior for AI coding assistants.",
+      "expected_contexts": [
+        "27) Function (cid:127) Method (cid:127) Module Implementation: AST parsers or\nTree-sitter extract structural elements. Pros: (cid:127) Maintains code meaning. (cid:127) Better code retrieval. (cid:127)\nSuperior for AI coding assistants. Cons: (cid:127) Language-specific logic required. Best for: Repository\nchat, code search, coding copilots.\n10. Agentic Chunking\nHow it works: An LLM analyzes a doc"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 14,
+        "source_page": [],
+        "topic": "Code Analysis Techniques",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 442.39,
+      "generation_latency_ms": 1042.07,
+      "token_usage": {
+        "input_tokens_estimate": 321,
+        "output_tokens_estimate": 39
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.8125,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.72,
+      "answer_similarity": 0.5625,
+      "hallucination_rate": 0.1875,
+      "groundedness_score": 0.8125,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.9251
+    },
+    {
+      "id": "q_016",
+      "question": "What are the main steps an LLM takes when performing entic chunking on a document?",
+      "answer": "When performing entic chunking on a document, an LLM takes the following main steps:\n\n1. Analyzes the document to understand its content.\n2. Decides on chunk boundaries based on the analysis.\n3. May detect topics within the document.\n4. Creates summaries of the document or its parts.\n5. Generates metadata related to the document.\n6. Builds relationships between different parts of the document.",
+      "contexts": [
+        "entic Chunking\nHow it works: An LLM analyzes a document and decides chunk boundaries. The model may: (cid:127)\nDetect topics. (cid:127) Create summaries. (cid:127) Generate metadata. (cid:127) Build relationships. Pros: (cid:127) Extremely\ncontext-aware. (cid:127) High retrieval quality. (cid:127) Can generate rich metadata. Cons: (cid:127) Expensive. (cid:127) Slow\nindexing. (cid:127) Increased o",
+        "entic Chunking\nHow it works: An LLM analyzes a document and decides chunk boundaries. The model may: (cid:127)\nDetect topics. (cid:127) Create summaries. (cid:127) Generate metadata. (cid:127) Build relationships. Pros: (cid:127) Extremely\ncontext-aware. (cid:127) High retrieval quality. (cid:127) Can generate rich metadata. Cons: (cid:127) Expensive. (cid:127) Slow\nindexing. (cid:127) Increased o",
+        "entic Chunking\nHow it works: An LLM analyzes a document and decides chunk boundaries. The model may: (cid:127)\nDetect topics. (cid:127) Create summaries. (cid:127) Generate metadata. (cid:127) Build relationships. Pros: (cid:127) Extremely\ncontext-aware. (cid:127) High retrieval quality. (cid:127) Can generate rich metadata. Cons: (cid:127) Expensive. (cid:127) Slow\nindexing. (cid:127) Increased o"
+      ],
+      "ground_truth": "An LLM analyzes a document and decides chunk boundaries, which may include detecting topics, creating summaries, generating metadata, and building relationships.",
+      "reference": "An LLM analyzes a document and decides chunk boundaries, which may include detecting topics, creating summaries, generating metadata, and building relationships.",
+      "expected_contexts": [
+        "entic Chunking\nHow it works: An LLM analyzes a document and decides chunk boundaries. The model may: (cid:127)\nDetect topics. (cid:127) Create summaries. (cid:127) Generate metadata. (cid:127) Build relationships. Pros: (cid:127) Extremely\ncontext-aware. (cid:127) High retrieval quality. (cid:127) Can generate rich metadata. Cons: (cid:127) Expensive. (cid:127) Slow\nindexing. (cid:127) Increased o"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 15,
+        "source_page": [],
+        "topic": "entic chunking process",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 408.27,
+      "generation_latency_ms": 1238.41,
+      "token_usage": {
+        "input_tokens_estimate": 324,
+        "output_tokens_estimate": 99
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 0.6875,
+      "faithfulness": 0.4375,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.4584,
+      "answer_similarity": 0.2973,
+      "hallucination_rate": 0.5625,
+      "groundedness_score": 0.4375,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.8052
+    },
+    {
+      "id": "q_017",
+      "question": "What are the benefits of hierarchical chunking in a knowledge system?",
+      "answer": "The benefits of hierarchical chunking in a knowledge system include:\n- Broad questions retrieve parent nodes.\n- Specific questions retrieve child nodes.",
+      "contexts": [
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand",
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand",
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand"
+      ],
+      "ground_truth": "Broad questions retrieve parent nodes. Specific questions retrieve child nodes.",
+      "reference": "Broad questions retrieve parent nodes. Specific questions retrieve child nodes.",
+      "expected_contexts": [
+        "ve. (cid:127) Slow\nindexing. (cid:127) Increased operational complexity. Best for: High-value enterprise knowledge systems.\n11. Hierarchical Chunking\nHow it works: Multiple chunk levels are created. Document -> Chapter -> Section -> Paragraph\nRetrieval can occur at multiple granularities. Benefits: Broad questions retrieve parent nodes.\nSpecific questions retrieve child nodes. Pros: (cid:127) Hand"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 16,
+        "source_page": [],
+        "topic": "Hierarchical Chunking",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 444.93,
+      "generation_latency_ms": 724.71,
+      "token_usage": {
+        "input_tokens_estimate": 320,
+        "output_tokens_estimate": 38
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.8462,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.7,
+      "answer_similarity": 0.5385,
+      "hallucination_rate": 0.1538,
+      "groundedness_score": 0.8462,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.9315
+    },
+    {
+      "id": "q_018",
+      "question": "What are the pros of using this retrieval method for large documents?",
+      "answer": "The pros of using this retrieval method for large documents include:\n- Handles very large documents\n- Supports both overview and detail retrieval\n- Improves recall",
+      "contexts": [
+        "estions retrieve child nodes. Pros: (cid:127) Handles very large documents. (cid:127) Supports both\noverview and detail retrieval. (cid:127) Improves recall. Cons: (cid:127) More complex implementation. (cid:127) Larger\nstorage footprint. Best for: Books, annual reports, long PDFs.",
+        "estions retrieve child nodes. Pros: (cid:127) Handles very large documents. (cid:127) Supports both\noverview and detail retrieval. (cid:127) Improves recall. Cons: (cid:127) More complex implementation. (cid:127) Larger\nstorage footprint. Best for: Books, annual reports, long PDFs.",
+        "estions retrieve child nodes. Pros: (cid:127) Handles very large documents. (cid:127) Supports both\noverview and detail retrieval. (cid:127) Improves recall. Cons: (cid:127) More complex implementation. (cid:127) Larger\nstorage footprint. Best for: Books, annual reports, long PDFs."
+      ],
+      "ground_truth": "Handles very large documents, Supports both overview and detail retrieval, Improves recall",
+      "reference": "Handles very large documents, Supports both overview and detail retrieval, Improves recall",
+      "expected_contexts": [
+        "estions retrieve child nodes. Pros: (cid:127) Handles very large documents. (cid:127) Supports both\noverview and detail retrieval. (cid:127) Improves recall. Cons: (cid:127) More complex implementation. (cid:127) Larger\nstorage footprint. Best for: Books, annual reports, long PDFs."
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 17,
+        "source_page": [],
+        "topic": "Retrieval Method",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 404.38,
+      "generation_latency_ms": 742.22,
+      "token_usage": {
+        "input_tokens_estimate": 233,
+        "output_tokens_estimate": 40
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 1.0,
+      "faithfulness": 0.75,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.8148,
+      "answer_similarity": 0.6875,
+      "hallucination_rate": 0.25,
+      "groundedness_score": 0.75,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.919
+    }
+  ],
+  "failed_questions": [
+    {
+      "id": "q_001",
+      "question": "What is the process of chunking in the context of RAG systems?",
+      "failed_metrics": {
+        "faithfulness": 0.6486,
+        "answer_correctness": 0.4898,
+        "answer_similarity": 0.3243,
+        "hallucination_rate": 0.3514,
+        "groundedness_score": 0.6486
+      }
+    },
+    {
+      "id": "q_002",
+      "question": "What is the main disadvantage of fixed-size chunking in document processing?",
+      "failed_metrics": {
+        "context_entity_recall": 0.4286,
+        "faithfulness": 0.2424,
+        "answer_relevancy": 0.7143,
+        "answer_correctness": 0.5957,
+        "answer_similarity": 0.4242,
+        "hallucination_rate": 0.7576,
+        "groundedness_score": 0.2424
+      }
+    },
+    {
+      "id": "q_003",
+      "question": "What are the pros and cons of using simple chunking in RAG systems?",
+      "failed_metrics": {
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "context_entity_recall": 0.1429,
+        "faithfulness": 0.1625,
+        "answer_correctness": 0.198,
+        "answer_similarity": 0.1099,
+        "hallucination_rate": 0.8375,
+        "groundedness_score": 0.1625
+      }
+    },
+    {
+      "id": "q_004",
+      "question": "What is the purpose of using overlap in fixed-size chunking for RAG systems?",
+      "failed_metrics": {
+        "faithfulness": 0.4194,
+        "answer_relevancy": 0.75,
+        "answer_correctness": 0.439,
+        "answer_similarity": 0.2812,
+        "hallucination_rate": 0.5806,
+        "groundedness_score": 0.4194
+      }
+    },
+    {
+      "id": "q_005",
+      "question": "What are the pros and cons of using overlap in a RAG chatbot system?",
+      "failed_metrics": {
+        "answer_relevancy": 0.2857
+      }
+    },
+    {
+      "id": "q_006",
+      "question": "What is the primary benefit of sentence-based chunking in RAG systems?",
+      "failed_metrics": {
+        "faithfulness": 0.6667,
+        "answer_correctness": 0.5454,
+        "answer_similarity": 0.375,
+        "hallucination_rate": 0.3333,
+        "groundedness_score": 0.6667
+      }
+    },
+    {
+      "id": "q_007",
+      "question": "What are the pros and cons of using paragraph chunking for a RAG chatbot, and for which types of content is it best suited?",
+      "failed_metrics": {
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "context_entity_recall": 0.1304,
+        "faithfulness": 0.099,
+        "answer_correctness": 0.129,
+        "answer_similarity": 0.069,
+        "hallucination_rate": 0.901,
+        "groundedness_score": 0.099
+      }
+    },
+    {
+      "id": "q_008",
+      "question": "What are the pros of splitting text on paragraph separators and optionally merging small paragraphs?",
+      "failed_metrics": {
+        "faithfulness": 0.8333,
+        "answer_correctness": 0.6153,
+        "answer_similarity": 0.4444,
+        "hallucination_rate": 0.1667,
+        "groundedness_score": 0.8333
+      }
+    },
+    {
+      "id": "q_009",
+      "question": "What method is used to determine where to create new chunks in the document?",
+      "failed_metrics": {
+        "context_entity_recall": 0.1667,
+        "faithfulness": 0.4333,
+        "answer_relevancy": 0.5714,
+        "answer_correctness": 0.1904,
+        "answer_similarity": 0.1053,
+        "hallucination_rate": 0.5667,
+        "groundedness_score": 0.4333
+      }
+    },
+    {
+      "id": "q_010",
+      "question": "What are the advantages of the system described in the context?",
+      "failed_metrics": {
+        "context_relevancy": 0.0,
+        "context_entity_recall": 0.25,
+        "faithfulness": 0.5833,
+        "answer_correctness": 0.1667,
+        "answer_similarity": 0.0909,
+        "hallucination_rate": 0.4167,
+        "groundedness_score": 0.5833
+      }
+    },
+    {
+      "id": "q_011",
+      "question": "What are the pros of the described paragraph splitting method?",
+      "failed_metrics": {
+        "faithfulness": 0.8235,
+        "answer_similarity": 0.7059,
+        "hallucination_rate": 0.1765,
+        "groundedness_score": 0.8235
+      }
+    },
+    {
+      "id": "q_012",
+      "question": "What method does Structure-Aware Chunking use to determine chunk boundaries?",
+      "failed_metrics": {
+        "answer_relevancy": 0.5556,
+        "answer_correctness": 0.1818,
+        "answer_similarity": 0.1
+      }
+    },
+    {
+      "id": "q_013",
+      "question": "What are the limitations of using technical content with a RAG chatbot according to the context?",
+      "failed_metrics": {
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "context_relevancy": 0.0,
+        "context_entity_recall": 0.2222,
+        "faithfulness": 0.2069,
+        "answer_similarity": 0.0,
+        "hallucination_rate": 0.7931,
+        "groundedness_score": 0.2069
+      }
+    },
+    {
+      "id": "q_014",
+      "question": "What is the primary benefit of code chunking in developer documentation?",
+      "failed_metrics": {
+        "faithfulness": 0.381,
+        "answer_correctness": 0.1936,
+        "answer_similarity": 0.1071,
+        "hallucination_rate": 0.619,
+        "groundedness_score": 0.381
+      }
+    },
+    {
+      "id": "q_015",
+      "question": "What are the pros of using AST parsers or Tree-sitter for code analysis?",
+      "failed_metrics": {
+        "faithfulness": 0.8125,
+        "answer_similarity": 0.5625,
+        "hallucination_rate": 0.1875,
+        "groundedness_score": 0.8125
+      }
+    },
+    {
+      "id": "q_016",
+      "question": "What are the main steps an LLM takes when performing entic chunking on a document?",
+      "failed_metrics": {
+        "context_entity_recall": 0.6875,
+        "faithfulness": 0.4375,
+        "answer_correctness": 0.4584,
+        "answer_similarity": 0.2973,
+        "hallucination_rate": 0.5625,
+        "groundedness_score": 0.4375
+      }
+    },
+    {
+      "id": "q_017",
+      "question": "What are the benefits of hierarchical chunking in a knowledge system?",
+      "failed_metrics": {
+        "faithfulness": 0.8462,
+        "answer_similarity": 0.5385,
+        "hallucination_rate": 0.1538,
+        "groundedness_score": 0.8462
+      }
+    },
+    {
+      "id": "q_018",
+      "question": "What are the pros of using this retrieval method for large documents?",
+      "failed_metrics": {
+        "faithfulness": 0.75,
+        "answer_similarity": 0.6875,
+        "hallucination_rate": 0.25,
+        "groundedness_score": 0.75
+      }
+    }
+  ],
+  "thresholds": {
+    "context_precision": 0.85,
+    "context_recall": 0.8,
+    "context_relevancy": 0.75,
+    "context_entity_recall": 0.7,
+    "faithfulness": 0.85,
+    "answer_relevancy": 0.8,
+    "answer_correctness": 0.7,
+    "answer_similarity": 0.75,
+    "hallucination_rate": 0.15,
+    "groundedness_score": 0.85,
+    "retrieval_f1": 0.8,
+    "overall_rag_score": 0.75
+  },
+  "config_used": {
+    "system_prompt": "You are a helpful and friendly assistant. For greetings, casual conversation, or questions unrelated to any document, respond naturally and conversationally. When the user asks about a document or a topic covered in the context below, answer using ONLY that context. If a document-related question cannot be answered from the context, say so clearly.",
+    "temperature": 0.2,
+    "max_new_tokens": 512,
+    "top_k": 3,
+    "evaluator_llm": "Qwen/Qwen2.5-7B-Instruct",
+    "evaluator_embedding": "BAAI/bge-large-en-v1.5",
+    "evaluator_openai_base_url": "https://router.huggingface.co/v1"
+  }
+}

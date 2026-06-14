@@ -1,0 +1,100 @@
+{
+  "summary": {
+    "overall_rag_score": 0.9158,
+    "pass": false,
+    "timestamp": "2026-06-12T03:22:37.895777+00:00",
+    "total_questions": 1
+  },
+  "aggregate_scores": {
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "context_entity_recall": 0.6,
+    "faithfulness": 0.875,
+    "context_relevancy": 1.0,
+    "answer_relevancy": 1.0,
+    "answer_correctness": 0.4706,
+    "answer_similarity": 0.3077,
+    "hallucination_rate": 0.125,
+    "groundedness_score": 0.875,
+    "retrieval_f1": 1.0,
+    "overall_rag_score": 0.9158
+  },
+  "per_question_scores": [
+    {
+      "id": "q_001",
+      "question": "What is the process of chunking in the context of RAG systems?",
+      "answer": "Chunking in the context of RAG (Retrieval-Augmented Generation) systems is the process of dividing source documents into smaller units before embedding and indexing them. This division helps in managing the data more efficiently and can significantly impact the performance of the RAG system in terms of retrieval precision, recall, context preservation, storage cost, latency, and answer quality.",
+      "contexts": [
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage",
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage",
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage"
+      ],
+      "ground_truth": "Chunking is the process of dividing source documents into smaller units before embedding and indexing them.",
+      "reference": "Chunking is the process of dividing source documents into smaller units before embedding and indexing them.",
+      "expected_contexts": [
+        "Deep Dive: RAG Chunking Strategies\nChunking is the process of dividing source documents into smaller units before embedding and\nindexing them. The chunking strategy directly affects retrieval precision, recall, context\npreservation, storage cost, latency, and answer quality. This document explains how each major\nchunking strategy works internally, its implementation logic, advantages, disadvantage"
+      ],
+      "metadata": {
+        "category": "factual",
+        "difficulty": "easy",
+        "source_chunk_index": 0,
+        "source_page": [],
+        "topic": "RAG Chunking Strategies",
+        "qa_index_in_chunk": 0
+      },
+      "retrieval_latency_ms": 6565.33,
+      "generation_latency_ms": 2263.81,
+      "token_usage": {
+        "input_tokens_estimate": 319,
+        "output_tokens_estimate": 99
+      },
+      "chunk_count_used": 3,
+      "context_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0,
+      "context_entity_recall": 0.6,
+      "faithfulness": 0.875,
+      "answer_relevancy": 1.0,
+      "answer_correctness": 0.4706,
+      "answer_similarity": 0.3077,
+      "hallucination_rate": 0.125,
+      "groundedness_score": 0.875,
+      "retrieval_f1": 1.0,
+      "overall_rag_score": 0.9158
+    }
+  ],
+  "failed_questions": [
+    {
+      "id": "q_001",
+      "question": "What is the process of chunking in the context of RAG systems?",
+      "failed_metrics": {
+        "context_entity_recall": 0.6,
+        "answer_correctness": 0.4706,
+        "answer_similarity": 0.3077
+      }
+    }
+  ],
+  "thresholds": {
+    "context_precision": 0.85,
+    "context_recall": 0.8,
+    "context_relevancy": 0.75,
+    "context_entity_recall": 0.7,
+    "faithfulness": 0.85,
+    "answer_relevancy": 0.8,
+    "answer_correctness": 0.7,
+    "answer_similarity": 0.75,
+    "hallucination_rate": 0.15,
+    "groundedness_score": 0.85,
+    "retrieval_f1": 0.8,
+    "overall_rag_score": 0.75
+  },
+  "config_used": {
+    "system_prompt": "You are a helpful and friendly assistant. For greetings, casual conversation, or questions unrelated to any document, respond naturally and conversationally. When the user asks about a document or a topic covered in the context below, answer using ONLY that context. If a document-related question cannot be answered from the context, say so clearly.",
+    "temperature": 0.2,
+    "max_new_tokens": 512,
+    "top_k": 3,
+    "evaluator_llm": "Qwen/Qwen2.5-7B-Instruct",
+    "evaluator_embedding": "BAAI/bge-large-en-v1.5",
+    "evaluator_openai_base_url": "https://router.huggingface.co/v1"
+  }
+}

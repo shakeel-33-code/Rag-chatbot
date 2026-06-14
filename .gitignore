@@ -14,6 +14,11 @@ venv/
 backend/chroma_db/
 backend/chroma_db_recovered/
 
+# Local server runtime files
+backend/*_server.pid
+backend/*_server.out.log
+backend/*_server.err.log
+
 # OS
 .DS_Store
 Thumbs.db

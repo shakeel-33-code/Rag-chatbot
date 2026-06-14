@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from evaluation.eval_config import DEFAULT_EVALUATION_CONFIG, OVERALL_WEIGHTS
-from evaluation.report import build_report, save_report
+from evaluation.report import build_report, save_report, save_yaml_report_card
 from llm import ask_llm, build_prompt
 from observability import (
     record_exception,
@@ -33,6 +33,7 @@ def run_evaluation(
     config: dict[str, Any] | None = None,
     output_json_path: str | None = None,
     output_markdown_path: str | None = None,
+    output_yaml_path: str | None = None,
 ) -> EvaluationReport:
     config_used = {**DEFAULT_EVALUATION_CONFIG, **(config or {})}
     with timed_span(
@@ -117,16 +118,20 @@ def run_evaluation(
                     {
                         "evaluation.report_json_path": output_json_path,
                         "evaluation.report_markdown_path": output_markdown_path,
+                        "evaluation.report_yaml_path": output_yaml_path,
                     },
                     span_kind="CHAIN",
                 ) as report_save_span:
                     save_report(report, output_json_path, output_markdown_path)
+                    if output_yaml_path:
+                        save_yaml_report_card(report, output_yaml_path)
                     set_attribute(report_save_span, "evaluation.report.saved", True)
                     set_output(
                         report_save_span,
                         {
                             "json_path": output_json_path,
                             "markdown_path": output_markdown_path,
+                            "yaml_path": output_yaml_path,
                         },
                         mime_type="application/json",
                     )
@@ -423,8 +428,9 @@ def _compute_aggregate_scores(
     per_question_scores: list[dict[str, Any]],
 ) -> dict[str, float | None]:
     aggregate = {key: _round_score(value) for key, value in ragas_scores["aggregate"].items()}
-    if "context_relevancy" not in aggregate:
-        aggregate["context_relevancy"] = _average_metric(per_question_scores, "context_relevancy")
+    for metric in _score_metric_names():
+        if aggregate.get(metric) is None:
+            aggregate[metric] = _average_metric(per_question_scores, metric)
     derived = _compute_derived_metrics(aggregate)
     return {**aggregate, **derived}
 
@@ -466,6 +472,7 @@ def _merge_per_question_scores(
                 "reference",
             }
         }
+        normalized_metrics = _apply_metric_fallbacks(row, normalized_metrics)
         derived = _compute_derived_metrics(normalized_metrics)
         merged_row = {
             **row,
@@ -562,6 +569,118 @@ def _average_metric(rows: list[dict[str, Any]], metric: str) -> float | None:
     if not values:
         return None
     return _round_score(sum(values) / len(values))
+
+
+def _apply_metric_fallbacks(
+    row: dict[str, Any],
+    metrics: dict[str, float | None],
+) -> dict[str, float | None]:
+    completed = dict(metrics)
+    contexts = row.get("contexts", [])
+    expected_contexts = row.get("expected_contexts", [])
+    question = row.get("question", "")
+    answer = row.get("answer", "")
+    ground_truth = row.get("ground_truth", "")
+
+    fallback_values = {
+        "context_precision": _context_precision_fallback(contexts, expected_contexts),
+        "context_recall": _context_recall_fallback(contexts, expected_contexts),
+        "context_entity_recall": _entity_recall_fallback(contexts, ground_truth),
+        "faithfulness": _faithfulness_fallback(answer, contexts),
+        "answer_relevancy": _answer_relevancy_fallback(question, answer),
+        "answer_correctness": _answer_correctness_fallback(answer, ground_truth),
+        "answer_similarity": _answer_similarity_fallback(answer, ground_truth),
+        "context_relevancy": row.get("context_relevancy"),
+    }
+
+    for metric, fallback_score in fallback_values.items():
+        if completed.get(metric) is None and fallback_score is not None:
+            completed[metric] = fallback_score
+    return completed
+
+
+def _context_precision_fallback(contexts: list[str], expected_contexts: list[str]) -> float | None:
+    if not contexts:
+        return None
+    relevant = sum(
+        1
+        for context in contexts
+        if _max_text_overlap(context, expected_contexts) >= 0.2
+    )
+    return _round_score(relevant / len(contexts))
+
+
+def _context_recall_fallback(contexts: list[str], expected_contexts: list[str]) -> float | None:
+    if not expected_contexts:
+        return None
+    recalled = sum(
+        1
+        for expected_context in expected_contexts
+        if _max_text_overlap(expected_context, contexts) >= 0.2
+    )
+    return _round_score(recalled / len(expected_contexts))
+
+
+def _entity_recall_fallback(contexts: list[str], ground_truth: str) -> float | None:
+    truth_terms = _significant_terms(ground_truth)
+    if not truth_terms:
+        return None
+    context_terms = _significant_terms(" ".join(contexts))
+    return _round_score(len(truth_terms.intersection(context_terms)) / len(truth_terms))
+
+
+def _faithfulness_fallback(answer: str, contexts: list[str]) -> float | None:
+    answer_terms = _significant_terms(answer)
+    if not answer_terms:
+        return None
+    context_terms = _significant_terms(" ".join(contexts))
+    return _round_score(len(answer_terms.intersection(context_terms)) / len(answer_terms))
+
+
+def _answer_relevancy_fallback(question: str, answer: str) -> float | None:
+    question_terms = _significant_terms(question)
+    if not question_terms:
+        return None
+    answer_terms = _significant_terms(answer)
+    return _round_score(len(question_terms.intersection(answer_terms)) / len(question_terms))
+
+
+def _answer_correctness_fallback(answer: str, ground_truth: str) -> float | None:
+    return _f1(
+        _text_precision(answer, ground_truth),
+        _text_recall(answer, ground_truth),
+    )
+
+
+def _answer_similarity_fallback(answer: str, ground_truth: str) -> float | None:
+    answer_terms = _significant_terms(answer)
+    truth_terms = _significant_terms(ground_truth)
+    if not answer_terms or not truth_terms:
+        return None
+    union = answer_terms.union(truth_terms)
+    return _round_score(len(answer_terms.intersection(truth_terms)) / len(union))
+
+
+def _max_text_overlap(text: str, candidates: list[str]) -> float:
+    if not candidates:
+        return 0.0
+    return max((_text_recall(text, candidate) or 0.0) for candidate in candidates)
+
+
+def _text_precision(predicted: str, reference: str) -> float | None:
+    predicted_terms = _significant_terms(predicted)
+    reference_terms = _significant_terms(reference)
+    if not predicted_terms:
+        return None
+    return _round_score(len(predicted_terms.intersection(reference_terms)) / len(predicted_terms))
+
+
+def _text_recall(predicted: str, reference: str) -> float | None:
+    predicted_terms = _significant_terms(predicted)
+    reference_terms = _significant_terms(reference)
+    if not reference_terms:
+        return None
+    return _round_score(len(predicted_terms.intersection(reference_terms)) / len(reference_terms))
 
 
 def _set_aggregate_metric_attributes(span: Any, scores: dict[str, Any]) -> None:
