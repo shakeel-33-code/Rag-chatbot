@@ -80,7 +80,9 @@ def ask_llm(messages: list, temperature: float = 0.2, max_tokens: int = config.M
         except Exception as exc:
             last_exception = exc
             err = str(exc)
-            if "503" in err or "unavailable" in err.lower():
+            if config.get_llm_provider() == "huggingface" and (
+                "503" in err or "unavailable" in err.lower()
+            ):
                 return "Model is warming up on Hugging Face servers. Please retry in 20-30 seconds."
             if _should_try_next_model(err, model, model_candidates):
                 continue
@@ -93,7 +95,7 @@ def ask_llm(messages: list, temperature: float = 0.2, max_tokens: int = config.M
 
 
 def _model_candidates() -> list:
-    candidates = [config.LLM_MODEL, *config.LLM_FALLBACK_MODELS]
+    candidates = [config.get_llm_model(), *config.get_llm_fallback_models()]
     deduped = []
     for model in candidates:
         if model and model not in deduped:
@@ -104,12 +106,14 @@ def _model_candidates() -> list:
 def _get_client() -> OpenAI:
     global _client, _client_config
 
-    api_key = config.get_openai_api_key()
-    base_url = config.get_openai_base_url()
+    api_key = config.get_llm_api_key()
+    base_url = config.get_llm_base_url()
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY or HF_API_KEY is not configured in .env.")
+        raise RuntimeError(
+            "The selected LLM provider is missing its API key in .env."
+        )
 
-    current_config = (api_key, base_url)
+    current_config = (config.get_llm_provider(), api_key, base_url)
     if _client is None or current_config != _client_config:
         _client = OpenAI(api_key=api_key, base_url=base_url)
         _client_config = current_config

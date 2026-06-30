@@ -18,6 +18,9 @@ from observability import (
     set_output,
     timed_span,
 )
+from retrieval.schemas import DocumentChunk
+from retrieval.sparse import SpladeSparseEncoder
+from storage.qdrant_store import QdrantVectorStore
 
 
 class CompatibleEmbeddingFunction(EmbeddingFunction):
@@ -153,20 +156,27 @@ def embed_texts(texts: list) -> Embeddings:
     return embedding_function(texts)
 
 
-def ingest_pdf(file_bytes: bytes, filename: str) -> int:
+def ingest_pdf(
+    file_bytes: bytes,
+    filename: str,
+    *,
+    user_id: str | None = None,
+    document_id: str | None = None,
+) -> int:
     with timed_span(
         "pdf_parse",
         "pdf_parse.duration_ms",
         {"upload.filename": filename},
         span_kind="CHAIN",
     ) as span:
-        text = ""
+        page_texts = []
         with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
             set_attribute(span, "pdf.page_count", len(pdf.pages))
-            for page in pdf.pages:
+            for page_number, page in enumerate(pdf.pages, start=1):
                 page_text = page.extract_text()
                 if page_text:
-                    text += page_text + "\n"
+                    page_texts.append((page_number, page_text))
+        text = "\n".join(page_text for _, page_text in page_texts)
         set_attribute(span, "pdf.extracted_chars", len(text))
 
     with timed_span(
@@ -178,19 +188,25 @@ def ingest_pdf(file_bytes: bytes, filename: str) -> int:
         },
         span_kind="CHAIN",
     ) as span:
-        chunker = TokenChunker(
-            chunk_size=config.CHUNK_SIZE,
-            chunk_overlap=config.CHUNK_OVERLAP,
-        )
-        chunks = chunker.chunk(text)
+        chunks = _chunk_pdf_pages(page_texts)
         set_attribute(span, "chunking.chunk_count", len(chunks))
 
     if not chunks:
         return 0
 
     ids = [str(uuid.uuid4()) for _ in chunks]
-    documents = [chunk.text for chunk in chunks]
+    documents = [chunk["text"] for chunk in chunks]
     metadatas = [{"source": filename} for _ in chunks]
+
+    if config.use_qdrant():
+        return _ingest_qdrant_chunks(
+            ids=ids,
+            documents=documents,
+            chunks=chunks,
+            filename=filename,
+            user_id=user_id,
+            document_id=document_id,
+        )
 
     with timed_span(
         "vector_add",
@@ -217,6 +233,95 @@ def ingest_pdf(file_bytes: bytes, filename: str) -> int:
             raise
 
     return len(chunks)
+
+
+def _chunk_pdf_pages(page_texts: list[tuple[int, str]]) -> list[dict]:
+    chunker = TokenChunker(
+        chunk_size=config.CHUNK_SIZE,
+        chunk_overlap=config.CHUNK_OVERLAP,
+    )
+    chunks = []
+    for page_number, page_text in page_texts:
+        for chunk_index_on_page, chunk in enumerate(chunker.chunk(page_text), start=1):
+            text = chunk.text.strip()
+            if not text:
+                continue
+            chunks.append(
+                {
+                    "text": text,
+                    "page_number": page_number,
+                    "chunk_index_on_page": chunk_index_on_page,
+                }
+            )
+    return chunks
+
+
+def _ingest_qdrant_chunks(
+    *,
+    ids: list[str],
+    documents: list[str],
+    chunks: list[dict],
+    filename: str,
+    user_id: str | None,
+    document_id: str | None,
+) -> int:
+    effective_user_id = (user_id or config.DEFAULT_USER_ID).strip()
+    if not effective_user_id:
+        raise ValueError(
+            "Qdrant ingestion requires user_id. Pass user_id or set DEFAULT_USER_ID."
+        )
+
+    effective_document_id = (document_id or str(uuid.uuid4())).strip()
+    dense_vectors = embed_texts(documents)
+    sparse_vectors = SpladeSparseEncoder().encode(documents)
+
+    document_chunks = []
+    for chunk_index, (chunk_id, document, chunk) in enumerate(
+        zip(ids, documents, chunks),
+        start=1,
+    ):
+        document_chunks.append(
+            DocumentChunk(
+                id=chunk_id,
+                content=document,
+                metadata={
+                    "user_id": effective_user_id,
+                    "document_id": effective_document_id,
+                    "source": filename,
+                    "file_type": "pdf",
+                    "page_number": chunk["page_number"],
+                    "chunk_index": chunk_index,
+                    "chunk_index_on_page": chunk["chunk_index_on_page"],
+                    "chunk_type": "child",
+                    "parser": "pdfplumber",
+                    "chunker": "token",
+                },
+            )
+        )
+
+    with timed_span(
+        "vector_add",
+        "vector_add.duration_ms",
+        {
+            "vector_store.vendor": "qdrant",
+            "vector_store.collection": config.QDRANT_COLLECTION,
+            "vector_add.document_count": len(document_chunks),
+            "embedding.model_name": config.EMBED_MODEL,
+            "sparse.model_name": config.QDRANT_SPARSE_MODEL,
+        },
+        span_kind="RETRIEVER",
+    ) as span:
+        try:
+            QdrantVectorStore().upsert_chunks(
+                document_chunks,
+                dense_vectors,
+                sparse_vectors,
+            )
+        except Exception as exc:
+            record_exception(span, exc)
+            raise
+
+    return len(document_chunks)
 
 
 def _embedding_dimension(embeddings: Embeddings) -> int:
