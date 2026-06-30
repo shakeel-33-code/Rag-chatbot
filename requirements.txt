@@ -4,6 +4,8 @@ python-multipart
 pdfplumber
 chonkie
 chromadb
+qdrant-client
+fastembed
 requests
 python-dotenv
 huggingface_hub

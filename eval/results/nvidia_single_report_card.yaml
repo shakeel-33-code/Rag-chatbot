@@ -1,0 +1,150 @@
+report_card:
+  summary:
+    timestamp: '2026-06-22T20:12:37.484873+00:00'
+    total_questions: 1
+    pass: false
+    overall_rag_score: 0.7082
+  metrics:
+    Context precision:
+      score: 0.3333
+      threshold: 0.85
+      status: fail
+    Context recall:
+      score: 1.0
+      threshold: 0.8
+      status: pass
+    Answer relevance:
+      score: 0.3636
+      threshold: 0.8
+      status: fail
+    Faithfulness:
+      score: 1.0
+      threshold: 0.85
+      status: pass
+    Groundedness:
+      score: 1.0
+      threshold: 0.85
+      status: pass
+    Retrieval score:
+      score: 0.5
+      threshold: 0.8
+      status: fail
+    Hallucination rate:
+      score: 0.0
+      threshold: 0.15
+      status: pass
+  failed_questions:
+  - id: d2l_q001
+    question: In D2L's linear regression section, how are predictions for an entire
+      dataset expressed using the design matrix?
+    failed_metrics:
+      context_precision: 0.3333
+      context_relevancy: 0.6667
+      answer_relevancy: 0.3636
+      answer_correctness: 0.3704
+      answer_similarity: 0.2273
+      retrieval_f1: 0.5
+per_question_results:
+- id: d2l_q001
+  question: In D2L's linear regression section, how are predictions for an entire
+    dataset expressed using the design matrix?
+  generated_answer: Predictions for an entire dataset are expressed as y_hat = Xw
+    with broadcasting for the bias.
+  reference_answer: For a dataset with design matrix X, linear regression expresses
+    the predictions as a matrix-vector product y_hat = Xw, with broadcasting used
+    for the bias term. Each row of X is one example and each column is one feature.
+  retrieved_contexts:
+  - Linear regression collects all features into a vector x and all weights into a
+    vector w, expressing the prediction compactly as the dot product between w and
+    x. For an entire dataset, the features are represented by the design matrix X,
+    with one row for every example and one column for every feature, and predictions
+    are expressed as y_hat = Xw with broadcasting for the bias. Even when the true
+    relationship is believed to be linear, D2L includes a noise term because measurements
+    of features and labels may contain error. The model needs a loss function and
+    a procedure for updating parameters. The analytic solution for linear regression
+    requires X^T X to be invertible, which means the columns of the design matrix
+    are linearly independent. Minibatch stochastic gradient descent updates parameters
+    by sampling random minibatches and moving in the negative gradient direction,
+    whereas full gradient descent computes derivatives over the entire dataset before
+    an update. Vectorized computation processes whole minibatches with optimized linear
+    algebra libraries and avoids slow Python loops. Squared loss can be motivated
+    probabilistically by assuming additive zero-mean Gaussian noise; under fixed variance,
+    minimizing mean squared error is equivalent to maximum likelihood estimation.
+  - 'For Gaussian process regression, D2L assumes a Gaussian process prior over a
+    latent noise-free function with a mean function and a kernel function, plus additive
+    zero-mean Gaussian noise. It describes a two-step procedure: first learn kernel
+    hyperparameters by maximizing the marginal likelihood, then use the predictive
+    mean as a point predictor and two times the predictive standard deviation to form
+    a 95 percent credible set. The predictive mean depends explicitly on the target
+    values, while the predictive variance depends on test locations, training locations,
+    and the kernel. Major computational bottlenecks are solving a linear system and
+    computing a log determinant over an n by n symmetric positive definite kernel
+    matrix; naively these require O(n^3) computation and O(n^2) storage, often via
+    Cholesky decomposition.'
+  - 'D2L motivates multilayer perceptrons by explaining the limitations of linear
+    models. Linearity implies monotonicity: increasing a feature must always move
+    the model output in one direction depending on the sign of its weight. Many real
+    relationships are nonlinear or non-monotonic, so hidden layers are introduced.
+    An MLP stacks fully connected layers, where earlier layers learn representations
+    and the final layer acts as a linear predictor. However, stacking affine transformations
+    alone does not help, because an affine function of an affine function is still
+    affine and can collapse into a single equivalent linear layer. To realize the
+    potential of multilayer architectures, nonlinear activation functions must be
+    inserted between affine layers. ReLU, the rectified linear unit, returns max(x,
+    0), preserving positive inputs and setting negative ones to zero. D2L highlights
+    ReLU''s simplicity, good performance, and well-behaved derivatives, which help
+    mitigate vanishing gradients. Sigmoid activations map real inputs to (0, 1) but
+    can suffer from gradients that vanish for large positive or negative inputs.'
+  expected_contexts:
+  - Linear regression collects all features into a vector x and all weights into a
+    vector w, expressing the prediction compactly as the dot product between w and
+    x. For an entire dataset, the features are represented by the design matrix X,
+    with one row for every example and one column for every feature, and predictions
+    are expressed as y_hat = Xw with broadcasting for the bias. Even when the true
+    relationship is believed to be linear, D2L includes a noise term because measurements
+    of features and labels may contain error. The model needs a loss function and
+    a procedure for updating parameters. The analytic solution for linear regression
+    requires X^T X to be invertible, which means the columns of the design matrix
+    are linearly independent. Minibatch stochastic gradient descent updates parameters
+    by sampling random minibatches and moving in the negative gradient direction,
+    whereas full gradient descent computes derivatives over the entire dataset before
+    an update. Vectorized computation processes whole minibatches with optimized linear
+    algebra libraries and avoids slow Python loops. Squared loss can be motivated
+    probabilistically by assuming additive zero-mean Gaussian noise; under fixed variance,
+    minimizing mean squared error is equivalent to maximum likelihood estimation.
+  metrics:
+    Context precision:
+      score: 0.3333
+      threshold: 0.85
+      status: fail
+    Context recall:
+      score: 1.0
+      threshold: 0.8
+      status: pass
+    Answer relevance:
+      score: 0.3636
+      threshold: 0.8
+      status: fail
+    Faithfulness:
+      score: 1.0
+      threshold: 0.85
+      status: pass
+    Groundedness:
+      score: 1.0
+      threshold: 0.85
+      status: pass
+    Retrieval score:
+      score: 0.5
+      threshold: 0.8
+      status: fail
+    Hallucination rate:
+      score: 0.0
+      threshold: 0.15
+      status: pass
+  diagnostics:
+    retrieval_latency_ms: 2961.25
+    generation_latency_ms: null
+    chunk_count_used: 3
+    token_usage:
+      input_tokens_estimate: 839
+      output_tokens_estimate: 23

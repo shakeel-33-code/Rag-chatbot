@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Any
@@ -49,6 +49,7 @@ settings = {
 class ChatRequest(BaseModel):
     question: str
     history: List[Dict[str, str]] = []
+    user_id: str | None = None
 
 class SettingsRequest(BaseModel):
     system_prompt: str
@@ -64,7 +65,11 @@ class EvaluationRunRequest(BaseModel):
     top_k: int | None = None
 
 @app.post("/upload")
-async def upload(file: UploadFile = File(...)):
+async def upload(
+    file: UploadFile = File(...),
+    user_id: str | None = Form(None),
+    document_id: str | None = Form(None),
+):
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
 
@@ -78,7 +83,12 @@ async def upload(file: UploadFile = File(...)):
         span_kind="CHAIN",
     ) as span:
         try:
-            chunks_ingested = ingest_pdf(file_bytes, file.filename)
+            chunks_ingested = ingest_pdf(
+                file_bytes,
+                file.filename,
+                user_id=user_id,
+                document_id=document_id,
+            )
             set_attribute(span, "ingest.chunks_ingested", chunks_ingested)
         except Exception as e:
             record_exception(span, e)
@@ -96,6 +106,7 @@ def chat(request: ChatRequest):
             "rag.top_k": settings["top_k"],
             "rag.temperature": settings["temperature"],
             "rag.max_new_tokens": settings["max_new_tokens"],
+            "rag.user_id_present": bool(request.user_id),
         },
         span_kind="CHAIN",
     ) as span:
@@ -111,7 +122,11 @@ def chat(request: ChatRequest):
             )
 
             rewritten_question = preprocess_query(request.question, request.history)
-            context = retrieve(rewritten_question, top_k=settings["top_k"])
+            context = retrieve(
+                rewritten_question,
+                top_k=settings["top_k"],
+                user_id=request.user_id,
+            )
             set_attribute(span, "rag.context_chars", len(context))
 
             messages = build_prompt(
